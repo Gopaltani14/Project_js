@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Todo Table</title>
+    <style>
+      table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table td,
+      table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      table tr:hover {
+        background-color: #ddd;
+      }
+
+      table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: cornflowerblue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Todo Table</h2>
+    <div id="inputfields"></div>
+    <div id="buttonfields"></div>
+    <div id="displaydata">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Qualification</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      const inputFields = document.getElementById("inputfields");
+      const buttonfields = document.getElementById("buttonfields");
+
+      //name input field and label
+      const nameLabel = document.createElement("label");
+      nameLabel.innerText = "Name:";
+      nameLabel.style.cssText =
+        "color:red;font-size:15px;letter-spacing:1px;margin:5px;font-weight:800";
+      inputFields.insertAdjacentElement("afterbegin", nameLabel);
+      const nameInput = document.createElement("input");
+      nameInput.setAttribute("type", "text");
+      nameInput.placeholder = "Enter your name";
+      nameInput.style.cssText = "padding:6px;border-radius:10px;outline:none";
+      inputFields.insertAdjacentElement("beforeend", nameInput);
+
+      //age input field and label
+      const ageLabel = document.createElement("label");
+      ageLabel.innerText = "Age:";
+      ageLabel.style.cssText =
+        "color:red;font-size:15px;letter-spacing:1px;margin:5px;font-weight:800";
+      inputFields.insertAdjacentElement("beforeend", ageLabel);
+      const ageInput = document.createElement("input");
+      ageInput.setAttribute("type", "number");
+      ageInput.placeholder = "Enter your age";
+      ageInput.style.cssText = "padding:6px;border-radius:10px;outline:none";
+      inputFields.insertAdjacentElement("beforeend", ageInput);
+
+      //qualification input field and label
+      const qualificationLabel = document.createElement("label");
+      qualificationLabel.innerText = "Qualification:";
+      qualificationLabel.style.cssText =
+        "color:red;font-size:15px;letter-spacing:1px;margin:5px;font-weight:800";
+      inputFields.insertAdjacentElement("beforeend", qualificationLabel);
+      const qualificationInput = document.createElement("input");
+      qualificationInput.setAttribute("type", "text");
+      qualificationInput.placeholder = "Enter your qualification";
+      qualificationInput.style.cssText =
+        "padding:6px;border-radius:10px;outline:none";
+      inputFields.insertAdjacentElement("beforeend", qualificationInput);
+
+      //submit button
+      const submitbtn = document.createElement("button");
+      submitbtn.innerText = "Submit";
+      submitbtn.style.cssText =
+        "color:white;background-color:green;border:none;padding:5px;border-radius:6px;margin:10px";
+      inputFields.insertAdjacentElement("beforeend", submitbtn);
+      //submit functionality
+      let sno = 0;
+      submitbtn.addEventListener("click", () => {
+        //debugger;
+        const tbody = document.querySelector("tbody");
+
+        const name = nameInput.value;
+        const age = ageInput.value;
+        const qualification = qualificationInput.value;
+
+        if (name !== "" && age !== "" && qualification !== "") {
+          const tr = document.createElement("tr");
+          const snotd = document.createElement("td");
+          const nametd = document.createElement("td");
+          const agetd = document.createElement("td");
+          const qualificationtd = document.createElement("td");
+
+          sno++;
+          snotd.innerText = sno;
+          nametd.innerText = name;
+          agetd.innerText = age;
+          qualificationtd.innerText = qualification;
+
+          tr.append(snotd, nametd, agetd, qualificationtd);
+          tbody.append(tr);
+
+          //reseting the inputs
+          nameInput.value = "";
+          ageInput.value = "";
+          qualificationInput.value = "";
+        }
+      });
+
+      //reset button
+      const resetbtn = document.createElement("button");
+      resetbtn.innerText = "Reset";
+      resetbtn.style.cssText =
+        "color:white;background-color:red;border:none;padding:5px;border-radius:6px;margin:10px";
+      inputFields.insertAdjacentElement("beforeend", resetbtn);
+      //reset functionality
+      resetbtn.addEventListener("click", () => {
+        nameInput.value = "";
+        ageInput.value = "";
+        qualificationInput.value = "";
+      });
+    </script>
+  </body>
+</html>
